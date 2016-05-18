@@ -98,45 +98,35 @@ describe('application logic', () => {
   describe('vote', () => {
     it('creates a tally for the voted entry', () => {
       const state = Map({
-        vote:     Map({ pair: List.of('V for Vendetta', 'Batman') }),
-        entries:  List()
+        pair: List.of('V for Vendetta', 'Batman')
       });
 
       const nextState = vote(state, 'V for Vendetta');
 
       expect(nextState).to.equal(Map({
-        vote: Map({ 
-          pair:   List.of('V for Vendetta', 'Batman'),
-          tally:  Map({ 'V for Vendetta': 1 }),
-        }),
-        entries: List()
+        pair:   List.of('V for Vendetta', 'Batman'),
+        tally:  Map({ 'V for Vendetta': 1 })
       }));
 
     });
 
     it('adds to existing tally for the voted entry', () => {
       const state = Map({
-        vote: Map({
-          pair:   List.of('V for Vendetta', 'Batman'),
-          tally:  Map({
-            'V for Vendetta':  2,
-            'Batman':          2
-          })
-        }),
-        entries: List()
+        pair:   List.of('V for Vendetta', 'Batman'),
+        tally:  Map({
+          'V for Vendetta':  2,
+          'Batman':          2
+        })
       });
 
       const nextState = vote(state, 'Batman');
 
       expect(nextState).to.equal(Map({
-        vote: Map({
-          pair:   List.of('V for Vendetta', 'Batman'),
-          tally:  Map({
-            'V for Vendetta':  2,
-            'Batman':          3
-          })
-        }),
-        entries: List()
+        pair:   List.of('V for Vendetta', 'Batman'),
+        tally:  Map({
+          'V for Vendetta':  2,
+          'Batman':          3
+        })
       }));
     });
   });

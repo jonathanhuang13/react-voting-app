@@ -26,9 +26,9 @@ export function next(state) {
 
   if (entries.size === 1){
     state = state.remove('vote');
-    state = state.remove('entries')
+    state = state.remove('entries');
     state = state.set('winner', entries.first());
-    return state
+    return state;
   }
 
   return state.merge({
@@ -38,5 +38,5 @@ export function next(state) {
 }
 
 export function vote(state, entry) {
-  return state.updateIn([ 'vote', 'tally', entry ], 0, tally => tally + 1);
+  return state.updateIn([ 'tally', entry ], 0, tally => tally + 1);
 }
